@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,22 +9,23 @@ class ImageController extends Controller
 {
     public function index()
     {
-        $images = Storage::files('public/images');
+        $images = Storage::files('images');
         return view('index', compact('images'));
     }
 
     public function upload(Request $request)
     {
+        // dd('Upload method called');
         $request->validate([
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif'
         ]);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
-                $file->store('public/images');
+                $file->store('images');
             }
         }
 
-        return redirect()->route('image.upload');
+        return redirect()->route('index');
     }
 }

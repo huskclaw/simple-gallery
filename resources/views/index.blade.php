@@ -8,14 +8,16 @@
     <h1>Upload Images</h1>
     <form action="{{ route('image.upload') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="images[]" multiple>
+        <input type="file" name="images[]" multiple id="image-input" accept="image/*">
         <button type="submit">Upload</button>
     </form>
 
     <h2>Gallery</h2>
-    <div class="gallery">
+    <div id="image-grid">
         @foreach($images as $image)
-            <img src="{{ Storage::url($image) }}" alt="Image">
+            <div class="image-item">
+                <img src="{{ Storage::url($image) }}" alt="Image">
+            </div>
         @endforeach
     </div>
 </body>
