@@ -123,4 +123,16 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+    'providers' => [
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+    ],
+
+
+    'aliases' => [
+        'Image' => Intervention\Image\Facades\Image::class,
+    ],
+
+
 ];

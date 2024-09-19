@@ -3,6 +3,7 @@
 <head>
     <title>Image Upload</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <h1>Upload Images</h1>
@@ -16,9 +17,12 @@
     <div id="image-grid">
         @foreach($images as $image)
             <div class="image-item">
-                <img src="{{ Storage::url($image) }}" alt="Image">
+                <img src="{{ Storage::url($image) }}" alt="Image" id="img-{{ $loop->index }}">
+                <button class="rotate-button" onclick="rotateImage('{{ $image }}')">Rotate</button>
             </div>
         @endforeach
     </div>
+
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
